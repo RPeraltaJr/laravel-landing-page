@@ -9,8 +9,13 @@ class Submission extends Model
     protected $fillable = [
         'first_name',
         'last_name',
+        'city',
+        'state',
+        'zipcode',
         'email',
         'phone',
-        'message'
+        'cdla',
+        'experience',
+        'confirm'
     ];
 }
