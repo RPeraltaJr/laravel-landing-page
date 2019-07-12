@@ -65,8 +65,8 @@
                 <label for="cdla">Do you have your CDL-A?*</label>
                 <select id="cdla" name="cdla" class="form-control" required>
                     <option value="" disabled selected>Select</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
+                    <option value="Yes" @if(old('cdla') == 'Yes'): selected @endif>Yes</option>
+                    <option value="No" @if(old('cdla') == 'No'): selected @endif>No</option>
                 </select>
             </div>
 
@@ -74,8 +74,8 @@
                 <label for="experience">Do you have 1 year of driving experience in the last 10 years, with 6 months experience within the last 2 years?*</label>
                 <select id="experience" name="experience" class="form-control" required>
                     <option value="" disabled selected>Select</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
+                    <option value="Yes" @if(old('experience') == 'Yes'): selected @endif>Yes</option>
+                    <option value="No" @if(old('experience') == 'No'): selected @endif>No</option>
                 </select>
             </div>
 
