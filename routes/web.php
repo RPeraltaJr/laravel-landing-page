@@ -16,3 +16,8 @@ Route::post('/', 'SubmissionsController@store');
 Route::get('/thank-you', function () {
     return view('thank');
 });
+
+Auth::routes(['register' => false]);
+
+Route::get('/admin', 'HomeController@index')->name('home');
+
