@@ -47,6 +47,8 @@
                             @endforeach
                             </tbody>
                         </table>
+                    @else 
+                        No records found!
                     @endif
                     
                 </div>

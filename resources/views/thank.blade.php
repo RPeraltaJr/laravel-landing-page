@@ -1,4 +1,4 @@
-@extends('layouts')
+@extends('base')
 
 @section('content')
     <h3>Thank you for applying!</h3>

@@ -1,4 +1,4 @@
-@extends('layouts')
+@extends('base')
 
 @section('content')
     <div class="row">
@@ -46,7 +46,7 @@
                     </div>
                     <div class="col">
                         <label for="zipcode">Zipcode*</label>
-                        <input id="zipcode" class="form-control" name="zipcode" type="text" value="{{ old('zipcode') }}" required>
+                        <input id="zipcode" class="form-control" name="zipcode" type="text" maxlength="5" value="{{ old('zipcode') }}" required>
                     </div>
                 </div>
             </div>

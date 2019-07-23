@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Submission extends Model
 {
+    // allow updating the following fields
     protected $fillable = [
         'first_name',
         'last_name',
