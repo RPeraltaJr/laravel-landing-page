@@ -18,7 +18,8 @@ Route::get('/thank-you', function () {
 });
 
 Auth::routes(
-    // ['register' => false]
+    ['register' => false]
 );
 
 Route::get('/admin', 'HomeController@index')->name('home');
+Route::delete('/delete/{submission}', 'HomeController@destroy'); 

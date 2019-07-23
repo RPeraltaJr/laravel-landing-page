@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
 
-                <div class="card-body">
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div>
+
+                <div>
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
@@ -15,25 +15,26 @@
                     @endif
 
                     @if ($submissions)
-                        <table class="table">
-                            <thead>
+                        <table class="table table-bordered">
+                            <thead class="thead-dark">
                                 <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">First</th>
-                                    <th scope="col">Last</th>
-                                    <th scope="col">City</th>
-                                    <th scope="col">State</th>
-                                    <th scope="col">Zipcode</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Phone</th>
-                                    <th scope="col">CDL-A</th>
-                                    <th scope="col">Experience</th>
+                                    <th>Timestamp</th>
+                                    <th>First</th>
+                                    <th>Last</th>
+                                    <th>City</th>
+                                    <th>State</th>
+                                    <th>Zipcode</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>CDL-A</th>
+                                    <th>Experience</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                             @foreach ($submissions as $submission)
                                 <tr>
-                                    <th>{{ $submission->id }}</th>
+                                    <th>{{ $submission->created_at }}</th>
                                     <th>{{ $submission->first_name }}</th>
                                     <th>{{ $submission->last_name }}</th>
                                     <th>{{ $submission->city }}</th>
@@ -43,12 +44,45 @@
                                     <th>{{ $submission->phone }}</th>
                                     <th>{{ $submission->cdla }}</th>
                                     <th>{{ $submission->experience }}</th>
+                                    <th>
+                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteSubmission{{ $submission->id }}">
+                                            <span class="fa fa-trash" title="Delete">
+                                                <span class="sr-only">Delete</span>
+                                            </span>
+                                        </button>
+
+                                        <!-- The Modal -->
+                                        <div class="modal" id="deleteSubmission{{ $submission->id }}">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                
+                                                    <!-- Modal Header -->
+                                                    <div class="modal-header" style="border-bottom: none">
+                                                        <h3 class="modal-title text-danger">Are you sure you want to delete?</h3>
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    </div>
+                                                    
+                                                    <!-- Modal footer -->
+                                                    <div class="modal-footer">
+                                                        <form action="/delete/{{ $submission->id }}" method="POST">
+                                                            @method('DELETE')
+                                                            @csrf
+                                                            <button class="btn btn-danger">
+                                                                <span class="fa fa-trash"></span> Delete
+                                                            </button>
+                                                        </form>
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    </div>
+                                                
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </th>
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
-                    @else 
-                        No records found!
                     @endif
                     
                 </div>
@@ -56,4 +90,5 @@
         </div>
     </div>
 </div>
+
 @endsection

@@ -27,4 +27,9 @@ class HomeController extends Controller
         $submissions = Submission::all();
         return view('auth.home', compact('submissions'));
     }
+
+    public function destroy(Submission $submission) {
+        $submission->delete();
+        return back();
+    }
 }
