@@ -17,6 +17,8 @@ class Submission extends Model
         'phone',
         'cdla',
         'experience',
-        'confirm'
+        'confirm',
+        'status',
+        'notes',
     ];
 }

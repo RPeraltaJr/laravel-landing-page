@@ -22,4 +22,4 @@ Auth::routes(
 );
 
 Route::get('/admin', 'HomeController@index')->name('home');
-Route::delete('/delete/{submission}', 'HomeController@destroy'); 
+Route::resource('submissions', 'HomeController');

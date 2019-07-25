@@ -29,6 +29,7 @@
                                     <th>CDL-A</th>
                                     <th>Experience</th>
                                     <th></th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -44,6 +45,13 @@
                                     <th>{{ $submission->phone }}</th>
                                     <th>{{ $submission->cdla }}</th>
                                     <th>{{ $submission->experience }}</th>
+                                    <th>
+                                        <a href="submissions/{{ $submission->id }}/edit" class="btn btn-success btn-sm" title="View">
+                                            <span class="fa fa-search">
+                                                <span class="sr-only">View</span>
+                                            </span>
+                                        </a>
+                                    </th>
                                     <th>
                                         <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteSubmission{{ $submission->id }}">
                                             <span class="fa fa-trash" title="Delete">

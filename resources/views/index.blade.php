@@ -36,8 +36,8 @@
                         <select id="state" name="state" class="form-control" required>
                             <option value="" disabled selected>Select a State</option>
                             @if ($states)
-                                @foreach ($states as $state)
-                                    <option value="{{ $state }}" @if($state == old('state')): selected @endif>
+                                @foreach ($states as $abbr => $state)
+                                    <option value="{{ $abbr }}" @if($abbr == old('state')): selected @endif>
                                         {{ $state }}
                                     </option>
                                 @endforeach
@@ -45,7 +45,7 @@
                         </select>
                     </div>
                     <div class="col">
-                        <label for="zipcode">Zipcode*</label>
+                        <label for="zipcode">Zip Code*</label>
                         <input id="zipcode" class="form-control" name="zipcode" type="text" maxlength="5" value="{{ old('zipcode') }}" required>
                     </div>
                 </div>
