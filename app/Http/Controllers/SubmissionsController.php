@@ -68,13 +68,21 @@ class SubmissionsController extends Controller
 
     public function store() {
 
+        function cleanInput($data) {
+            $data = ucwords(strtolower($data));
+            $data = trim($data); // remove whitespaces from both sides of a string
+            $data = stripslashes($data); // removes backslashes
+            $data = htmlspecialchars($data, ENT_QUOTES, 'UTF-8'); // converts some predefined characters to HTML entities (ex. & to &amp;)
+            return $data;
+        }
+
         // validations
         $attributes = request()->validate([
             'first_name'    => ['required', 'min:3', 'max:255'],
             'last_name'     => ['required', 'min:3', 'max:255'],
             'city'          => ['required', 'min:3'],
             'state'         => ['required', 'min:4'],
-            'zipcode'       => ['required', 'min:5'],
+            'zipcode'       => ['required', 'min:5', 'max:5'],
             'email'         => ['required', 'min:3', 'max:255'],
             'phone'         => ['required', 'min:10'],
             'cdla'          => ['required', 'min:2'],
@@ -83,13 +91,13 @@ class SubmissionsController extends Controller
         ]);
 
         // format the data
-        $attributes['first_name'] = ucfirst($attributes['first_name']);
-        $attributes['last_name'] = ucfirst($attributes['last_name']);
-        $attributes['city'] = ucfirst($attributes['city']);
-        $attributes['state'] = ucfirst($attributes['state']);
-        $attributes['email'] = strtolower($attributes['email']);
-        $attributes['cdla'] = ucfirst($attributes['cdla']);
-        $attributes['experience'] = ucfirst($attributes['experience']);
+        $attributes['first_name'] = cleanInput($attributes['first_name']);
+        $attributes['last_name'] = cleanInput($attributes['last_name']);
+        $attributes['city'] = cleanInput($attributes['city']);
+        $attributes['state'] = cleanInput($attributes['state']);
+        $attributes['email'] = strtolower(cleanInput($attributes['email']));
+        $attributes['cdla'] = cleanInput($attributes['cdla']);
+        $attributes['experience'] = cleanInput($attributes['experience']);
 
         // update or create (to prevent duplicate entries)
         Submission::updateOrCreate($attributes);

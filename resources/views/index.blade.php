@@ -1,4 +1,4 @@
-@extends('layouts')
+@extends('base')
 
 @section('content')
     <div class="row">
@@ -46,7 +46,7 @@
                     </div>
                     <div class="col">
                         <label for="zipcode">Zipcode*</label>
-                        <input id="zipcode" class="form-control" name="zipcode" type="text" value="{{ old('zipcode') }}" required>
+                        <input id="zipcode" class="form-control" name="zipcode" type="text" maxlength="5" value="{{ old('zipcode') }}" required>
                     </div>
                 </div>
             </div>
@@ -83,7 +83,7 @@
                 <p>
                     <label>
                         <input type="checkbox" value="1" name="confirm" required>
-                        <span class="text-muted">By submitting this form you are opting in to receive correspondence from [COMPANY NAME]. This includes receiving autodialed telephone calls, prerecorded messages and emails about job opportunities at the contact number(s) I have provided above.</span>
+                        <span class="text-muted">By submitting this form you are opting in to receive correspondence from [NAME]. This includes receiving autodialed telephone calls, prerecorded messages and emails about job opportunities at the contact number(s) I have provided above.</span>
                     </label>
                 </p>
             </div>

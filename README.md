@@ -22,6 +22,12 @@ Create a **.env** file and update **DB_DATABASE**, **DB_USERNAME**, and **DB_PAS
 php artisan migrate
 ```
 
+Generate an Application Encryption Key:  
+
+```
+php artisan key:generate
+```
+
 Finally, run the project locally:
 
 ```

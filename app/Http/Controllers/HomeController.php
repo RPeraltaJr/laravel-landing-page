@@ -25,6 +25,11 @@ class HomeController extends Controller
     public function index()
     {
         $submissions = Submission::all();
-        return view('home', compact('submissions'));
+        return view('auth.home', compact('submissions'));
+    }
+
+    public function destroy(Submission $submission) {
+        $submission->delete();
+        return back();
     }
 }
