@@ -15,18 +15,18 @@
                 <div class="row">
                     <div class="col">
                         <label for="first_name">First Name*</label>
-                        <input id="first_name" class="form-control" name="first_name" type="text" value="{{ old('first_name') }}" required>
+                        <input id="first_name" class="form-control" name="first_name" type="text" value="{{ old('first_name') }}" pattern="[a-zA-Z\s]+" title="Only letters and spaces allowed" required>
                     </div>
                     <div class="col">
                         <label for="last_name">Last Name*</label>
-                        <input id="last_name" class="form-control" name="last_name" type="text" value="{{ old('last_name') }}" required>
+                        <input id="last_name" class="form-control" name="last_name" type="text" value="{{ old('last_name') }}" pattern="[a-zA-Z\s]+" title="Only letters and spaces allowed" required>
                     </div>
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="city">City*</label>
-                <input id="city" class="form-control" name="city" type="text" value="{{ old('city') }}" required>
+                <input id="city" class="form-control" name="city" type="text" value="{{ old('city') }}" pattern="[a-zA-Z\s]+" title="Only letters and spaces allowed" required>
             </div>
 
             <div class="form-group">
@@ -46,7 +46,7 @@
                     </div>
                     <div class="col">
                         <label for="zipcode">Zip Code*</label>
-                        <input id="zipcode" class="form-control" name="zipcode" type="text" maxlength="5" value="{{ old('zipcode') }}" required>
+                        <input id="zipcode" class="form-control" name="zipcode" type="text" maxlength="5" value="{{ old('zipcode') }}" pattern="[0-9]+" title="Only numbers allowed" required>
                     </div>
                 </div>
             </div>

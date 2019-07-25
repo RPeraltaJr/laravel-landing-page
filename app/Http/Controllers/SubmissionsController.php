@@ -78,10 +78,10 @@ class SubmissionsController extends Controller
 
         // validations
         $attributes = request()->validate([
-            'first_name'    => ['required', 'min:3', 'max:255'],
-            'last_name'     => ['required', 'min:3', 'max:255'],
-            'city'          => ['required', 'min:3'],
-            'state'         => ['required', 'min:2', 'max:2'],
+            'first_name'    => ['required', 'min:3', 'max:255', 'regex:/^[a-zA-Z\s]*$/'], // only letters & spaces allowed
+            'last_name'     => ['required', 'min:3', 'max:255', 'regex:/^[a-zA-Z\s]*$/'],
+            'city'          => ['required', 'min:3', 'regex:/^[a-zA-Z\s]*$/'],
+            'state'         => ['required', 'min:2', 'max:2', 'regex:/^[a-zA-Z\s]*$/'],
             'zipcode'       => ['required', 'min:5', 'max:5'],
             'email'         => ['required', 'min:3', 'max:255'],
             'phone'         => ['required', 'min:10'],
