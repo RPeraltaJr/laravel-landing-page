@@ -1,0 +1,4 @@
+#,"First Name","Last Name",City,State,Zip,Email,Phone,CDL-A,Experience,"Created At","Updated At"
+4,John,Doe,"New York",NY,22222,johndoe@mail.com,111-111-1111,Yes,No,"2019-07-23 19:21:47","2019-07-26 03:00:27"
+7,Jane,Doe,"Jersey City",NJ,12345,janedoe@mail.com,222-222-2222,Yes,Yes,"2019-07-26 02:59:01","2019-07-26 03:00:14"
+8,Yanet,Rodriguez,Miami,FL,33196,yanet@mail.com,123-456-7890,Yes,Yes,"2019-07-26 03:01:42","2019-07-26 03:01:42"

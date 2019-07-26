@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Submission;
+use Response; // for export method
 
 class HomeController extends Controller
 {
@@ -66,5 +67,52 @@ class HomeController extends Controller
 
         return view('auth.edit', compact('submission', 'statuses')); 
         
+    }
+
+    public function export() {
+
+        $table = Submission::all();
+        $filename = "submissions.csv";
+        $handle = fopen($filename, 'w+');
+        fputcsv($handle, array(
+            '#', 
+            'First Name', 
+            'Last Name', 
+            'City', 
+            'State', 
+            'Zip', 
+            'Email', 
+            'Phone', 
+            'CDL-A',
+            'Experience',
+            'Created At',
+            'Updated At'
+        ));
+
+        foreach($table as $row) {
+            fputcsv($handle, array(
+                $row['id'], 
+                $row['first_name'], 
+                $row['last_name'], 
+                $row['city'],
+                $row['state'],
+                $row['zipcode'],
+                $row['email'],
+                $row['phone'],
+                $row['cdla'],
+                $row['experience'],
+                $row['created_at'],
+                $row['updated_at'],
+            ));
+        }
+
+        fclose($handle);
+
+        $headers = array(
+            'Content-Type' => 'text/csv',
+        );
+
+        return Response::download($filename, 'submissions.csv', $headers);
+
     }
 }

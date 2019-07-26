@@ -17,9 +17,11 @@ Route::get('/thank-you', function () {
     return view('thank');
 });
 
+// * Dashboard Routes
 Auth::routes(
     ['register' => false]
 );
 
 Route::get('/admin', 'HomeController@index')->name('home');
 Route::resource('submissions', 'HomeController');
+Route::get('/export', 'HomeController@export');
