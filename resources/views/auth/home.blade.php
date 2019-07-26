@@ -8,11 +8,12 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
-                    <form action="" autocomplete="off">
+                    <form action="/admin/search" method="POST" autocomplete="off" role="search">
+                        @csrf
                         <div class="form-row">
                             <div class="col-md-8">
                                 <label for="q" class="sr-only">Search</label>
-                                <input type="search" name="q" id="q" class="form-control" placeholder="Search by keyword">
+                                <input type="search" name="q" id="q" class="form-control" @if(isset($query)) value="{{ $query }}" @endif placeholder="Search by first or last name">
                             </div>
                             <div class="col-md-4">
                                 <button class="btn btn-secondary btn-block">
@@ -27,8 +28,23 @@
 
         <div class="col-md-10 mt-4">
 
-            <h3>{{ $total_count }} Results</h3>
-            <hr>
+            @if( isset($message) )
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ $message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
+
+            @if ($submissions)
+                <h3>
+                    {{ $total_count }} 
+                    @if(isset($total_count) && $total_count > 1) Results @else Result @endif 
+                    @if(isset($query)) for <strong class="text-primary">{{ $query }}</strong> @endif
+                </h3>
+                <hr>
+            @endif
 
             @if (session('status'))
                 <div class="alert alert-success" role="alert">
@@ -37,7 +53,7 @@
             @endif
 
             @if ($submissions)
-                <table class="table table-bordered">
+                <table class="table table-bordered table-hover">
                     <thead class="thead-dark">
                         <tr>
                             <th>Timestamp</th>
@@ -111,12 +127,12 @@
                 </table>
                 <!-- Creates pagination -->
                 {!! $submissions->render() !!} 
+                <hr>
             @endif
             
         </div>
 
         <div class="col-md-10">
-            <hr>
             <a href="/export" class="btn btn-secondary">
                 <span class="fa fa-download"></span>&nbsp; 
                 Export CSV
