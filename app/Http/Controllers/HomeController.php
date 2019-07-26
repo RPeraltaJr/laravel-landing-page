@@ -25,8 +25,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $submissions = Submission::all();
-        return view('auth.home', compact('submissions'));
+        // $submissions = Submission::all();
+        $submissions = Submission::paginate(5);
+        $total_count = Submission::count();
+        return view('auth.home', compact('submissions', 'total_count'));
     }
 
     public function destroy(Submission $submission) {
