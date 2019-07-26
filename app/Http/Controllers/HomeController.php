@@ -77,7 +77,6 @@ class HomeController extends Controller
         $filename = "submissions.csv";
         $handle = fopen($filename, 'w+');
         fputcsv($handle, array(
-            '#', 
             'First Name', 
             'Last Name', 
             'City', 
@@ -87,13 +86,11 @@ class HomeController extends Controller
             'Phone', 
             'CDL-A',
             'Experience',
-            'Created At',
-            'Updated At'
+            'Submitted',
         ));
 
         foreach($table as $row) {
             fputcsv($handle, array(
-                $row['id'], 
                 $row['first_name'], 
                 $row['last_name'], 
                 $row['city'],
@@ -104,7 +101,6 @@ class HomeController extends Controller
                 $row['cdla'],
                 $row['experience'],
                 $row['created_at'],
-                $row['updated_at'],
             ));
         }
 

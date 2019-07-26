@@ -87,7 +87,7 @@ class SubmissionsController extends Controller
             'phone'         => ['required', 'min:10'],
             'cdla'          => ['required', 'min:2'],
             'experience'    => ['required', 'min:2'],
-            'confirm'       => ['required']
+            'confirm'       => ['required', 'min:1', 'max:1']
         ]);
 
         // format the data

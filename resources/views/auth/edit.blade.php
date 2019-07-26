@@ -23,7 +23,7 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <small>Submitted at {{ $submission->created_at }}</small>
+                        <span class="text-secondary">Submitted at {{ $submission->created_at }}</span>
                     </div>
                     <div class="card-body">
                         

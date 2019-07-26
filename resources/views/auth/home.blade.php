@@ -56,7 +56,6 @@
                 <table class="table table-bordered table-hover">
                     <thead class="thead-dark">
                         <tr>
-                            <th>Timestamp</th>
                             <th>First</th>
                             <th>Last</th>
                             <th>City</th>
@@ -66,13 +65,13 @@
                             <th>Phone</th>
                             <th>CDL-A</th>
                             <th>Experience</th>
+                            <th>Submitted</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                     @foreach ($submissions as $submission)
                         <tr>
-                            <th>{{ $submission->created_at }}</th>
                             <th>{{ $submission->first_name }}</th>
                             <th>{{ $submission->last_name }}</th>
                             <th>{{ $submission->city }}</th>
@@ -82,6 +81,7 @@
                             <th>{{ $submission->phone }}</th>
                             <th>{{ $submission->cdla }}</th>
                             <th>{{ $submission->experience }}</th>
+                            <th>{{ $submission->created_at }}</th>
                             <th class="text-center">
                                 <a href="submissions/{{ $submission->id }}/edit" class="btn btn-primary btn-sm" title="Edit">
                                     <span class="fa fa-edit">
