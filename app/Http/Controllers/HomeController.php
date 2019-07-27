@@ -40,9 +40,10 @@ class HomeController extends Controller
 
         $statuses = [
             'closed',
+            'hired',
             'interview',
             'pending',
-        ];
+        ]; 
 
         return view('auth.edit', compact('submission', 'statuses')); 
     }

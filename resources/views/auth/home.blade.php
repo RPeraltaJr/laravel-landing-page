@@ -26,7 +26,7 @@
             </div>
         </div>
 
-        <div class="col-md-10 mt-4">
+        <div class="col-md-11 mt-4">
 
             @if( isset($message) )
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -56,6 +56,7 @@
                 <table class="table table-bordered table-hover">
                     <thead class="thead-dark">
                         <tr>
+                            <th></th>
                             <th>First</th>
                             <th>Last</th>
                             <th>City</th>
@@ -72,6 +73,21 @@
                     <tbody>
                     @foreach ($submissions as $submission)
                         <tr>
+                            <th class="text-center">
+                                @switch($submission->status)
+                                    @case('closed')
+                                        <span class="fa fa-close" title="Closed"></span>
+                                        @break
+                                    @case('hired')
+                                        <span class="fa fa-check" title="Hired"></span>
+                                        @break
+                                    @case('interview')
+                                        <span class="fa fa-calendar" title="Interview"></span>
+                                        @break
+                                    @default
+                                        <span class="fa fa-minus" title="Pending"></span>
+                                @endswitch
+                            </th>
                             <th>{{ $submission->first_name }}</th>
                             <th>{{ $submission->last_name }}</th>
                             <th>{{ $submission->city }}</th>
@@ -81,9 +97,9 @@
                             <th>{{ $submission->phone }}</th>
                             <th>{{ $submission->cdla }}</th>
                             <th>{{ $submission->experience }}</th>
-                            <th>{{ $submission->created_at }}</th>
+                            <th>{{ $submission->created_at->format('m-d-Y') }}</th>
                             <th class="text-center">
-                                <a href="submissions/{{ $submission->id }}/edit" class="btn btn-primary btn-sm" title="Edit">
+                                <a href="/submissions/{{ $submission->id }}/edit" class="btn btn-primary btn-sm" title="Edit">
                                     <span class="fa fa-edit">
                                         <span class="sr-only">Edit</span>
                                     </span>
@@ -132,7 +148,7 @@
             
         </div>
 
-        <div class="col-md-10">
+        <div class="col-md-11">
             <a href="/export" class="btn btn-secondary">
                 <span class="fa fa-download"></span>&nbsp; 
                 Export CSV
