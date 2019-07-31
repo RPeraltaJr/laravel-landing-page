@@ -27,4 +27,4 @@ Route::resource('/submissions', 'HomeController');
 Route::get('/export', 'HomeController@export');
 
 // * Search Form
-Route::any('/admin/search', 'SearchController@index');
+Route::post('/admin/search', 'SearchController@filter');

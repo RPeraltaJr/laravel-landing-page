@@ -5,17 +5,45 @@
 <div class="container-fluid">
     <div class="row justify-content-center">
 
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
                     <form action="/admin/search" method="POST" autocomplete="off" role="search">
                         @csrf
                         <div class="form-row">
-                            <div class="col-md-8">
-                                <label for="q" class="sr-only">Search</label>
-                                <input type="search" name="q" id="q" class="form-control" @if(isset($query)) value="{{ $query }}" @endif placeholder="Search by first or last name">
+                            <div class="col-md-12">
+                                <h4>Search Filters</h4>
                             </div>
-                            <div class="col-md-4">
+                        </div>
+                        <div class="form-row mt-2">
+                            <div class="col-md-6">
+                                <label for="first_name" class="sr-only">First Name</label>
+                                <input type="search" name="first_name" id="first_name" class="form-control" @if(request('first_name')) value="{{ request('first_name') }}" @endif placeholder="First name">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="last_name" class="sr-only">Last Name</label>
+                                <input type="search" name="last_name" id="last_name" class="form-control"@if(request('last_name')) value="{{ request('last_name') }}" @endif placeholder="Last name">
+                            </div>
+                            <div class="col-md-6 mt-2">
+                                <label for="city" class="sr-only">City</label>
+                                <input type="search" name="city" id="city" class="form-control"@if(request('city')) value="{{ request('city') }}" @endif placeholder="City">
+                            </div>
+                            <div class="col-md-6 mt-2">
+                                <label for="state" class="sr-only">Select a State</label>
+                                <select name="state" id="state" class="form-control">
+                                    <option value="" selected readonly>State</option>
+                                    @if ($states)
+                                        @foreach ($states as $state)
+                                            <option value="{{ $state->state }}">
+                                                {{ $state->state }}
+                                            </option>
+                                        @endforeach
+                                    @endif
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row mt-3">
+                            <div class="col-md-2">
                                 <button class="btn btn-secondary btn-block">
                                     <span class="fa fa-search"></span> Search
                                 </button>

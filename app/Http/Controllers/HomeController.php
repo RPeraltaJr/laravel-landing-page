@@ -23,12 +23,13 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Submission $submission)
     {
         // $submissions = Submission::all();
-        $submissions = Submission::paginate(5);
-        $total_count = Submission::count();
-        return view('auth.home', compact('submissions', 'total_count'));
+        $submissions = $submission->paginate(5);
+        $total_count = $submission->count();
+        $states = $submission->select('state')->distinct()->orderBy('state', 'asc')->get();
+        return view('auth.home', compact('submissions', 'total_count', 'states'));
     }
 
     public function destroy(Submission $submission) {

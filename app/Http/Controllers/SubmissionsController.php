@@ -104,4 +104,5 @@ class SubmissionsController extends Controller
         return redirect('/thank-you');
         
     }
+
 }
