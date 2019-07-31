@@ -1,4 +1,15 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Nunito);@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css);@import url(https://fonts.googleapis.com/css?family=Nunito:300,400,600,800&display=swap);@charset "UTF-8";
+
+html,
+body,
+* {
+  font-family: "Nunito", sans-serif;
+  font-weight: 400;
+}
+
+.alert strong {
+  font-weight: 800;
+}
 
 /*!
  * Bootstrap v4.3.1 (https://getbootstrap.com/)

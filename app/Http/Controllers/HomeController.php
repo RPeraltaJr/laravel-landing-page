@@ -33,7 +33,7 @@ class HomeController extends Controller
 
     public function destroy(Submission $submission) {
         $submission->delete();
-        return back();
+        return back()->with('success', 'Record deleted!');
     }
 
     public function edit(Submission $submission) {
@@ -56,7 +56,7 @@ class HomeController extends Controller
         // return $submission;
         $submission->update(request(['status', 'notes']));
         // return request();
-        return back()->with('success', 'Updated!');
+        return back()->with('success', 'Record updated!');
     }
 
     public function show(Submission $submission) {

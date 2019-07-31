@@ -23,7 +23,7 @@ class SearchController extends Controller
         else:
             $submissions = Submission::paginate(5);
             $total_count = Submission::count();
-            return view('auth.home', compact('submissions', 'total_count'))->withMessage('No results found. Try to search again!')->withQuery ( $q );
+            return view('auth.home', compact('submissions', 'total_count'))->with("error", "No results found for <strong>{$q}</strong>. Try to search again!")->withQuery ( $q );
         endif;
     }
 }

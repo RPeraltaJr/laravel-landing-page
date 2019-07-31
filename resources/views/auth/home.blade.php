@@ -28,20 +28,15 @@
 
         <div class="col-md-11 mt-4">
 
-            @if( isset($message) )
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    {{ $message }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            @endif
+            @include('shared.error')
 
             @if ($submissions)
                 <h3>
                     {{ $total_count }} 
                     @if(isset($total_count) && $total_count > 1) Results @else Result @endif 
-                    @if(isset($query)) for <strong class="text-primary">{{ $query }}</strong> @endif
+                    @if( !isset($error) )
+                        @if(isset($query)) for <strong class="text-primary">{{ $query }}</strong> @endif
+                    @endif
                 </h3>
                 <hr>
             @endif
