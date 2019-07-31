@@ -15,30 +15,52 @@
                                 <h4>Search Filters</h4>
                             </div>
                         </div>
-                        <div class="form-row mt-2">
-                            <div class="col-md-6">
+                        <div class="form-row">
+                            <div class="col-md-6 mt-2">
                                 <label for="first_name" class="sr-only">First Name</label>
-                                <input type="search" name="first_name" id="first_name" class="form-control" @if(request('first_name')) value="{{ request('first_name') }}" @endif placeholder="First name">
+                                <input type="search" name="first_name" id="first_name" 
+                                    class="form-control @if( request('first_name') ) border-success @endif" 
+                                    @if( request('first_name') ) value="{{ request('first_name') }}" @endif placeholder="First name">
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 mt-2">
                                 <label for="last_name" class="sr-only">Last Name</label>
-                                <input type="search" name="last_name" id="last_name" class="form-control"@if(request('last_name')) value="{{ request('last_name') }}" @endif placeholder="Last name">
+                                <input type="search" name="last_name" id="last_name" 
+                                    class="form-control @if( request('last_name') ) border-success @endif"  
+                                    @if( request('last_name') ) value="{{ request('last_name') }}" @endif placeholder="Last name">
                             </div>
                             <div class="col-md-6 mt-2">
                                 <label for="city" class="sr-only">City</label>
-                                <input type="search" name="city" id="city" class="form-control"@if(request('city')) value="{{ request('city') }}" @endif placeholder="City">
+                                <input type="search" name="city" id="city" 
+                                    class="form-control @if( request('city') ) border-success @endif" 
+                                    @if( request('city') ) value="{{ request('city') }}" @endif placeholder="City">
                             </div>
                             <div class="col-md-6 mt-2">
                                 <label for="state" class="sr-only">Select a State</label>
-                                <select name="state" id="state" class="form-control">
-                                    <option value="" selected readonly>State</option>
+                                <select name="state" id="state" class="form-control @if( request('state') ) border-success @endif">
+                                    <option value="" selected readonly>Select a State</option>
                                     @if ($states)
-                                        @foreach ($states as $state)
-                                            <option value="{{ $state->state }}">
-                                                {{ $state->state }}
+                                        @foreach ($states as $abbr)
+                                            <option value="{{ $abbr->state }}" @if( request('state') == $abbr->state ) selected @endif>
+                                                {{ $abbr->state }}
                                             </option>
                                         @endforeach
                                     @endif
+                                </select>
+                            </div>
+                            <div class="col-md-6 mt-2">
+                                <label for="cdla" class="sr-only">CDL-A</label>
+                                <select name="cdla" id="cdla" class="form-control @if( request('cdla') ) border-success @endif">
+                                    <option value="" selected readonly>CDL-A?</option>
+                                    <option value="Yes" @if( request('cdla') == 'Yes' ): selected @endif>Yes</option>
+                                    <option value="No" @if( request('cdla') == 'No' ): selected @endif>No</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mt-2">
+                                <label for="cdla" class="sr-only">Experience</label>
+                                <select name="experience" id="experience" class="form-control @if( request('experience') ) border-success @endif">
+                                    <option value="" selected readonly>Experience?</option>
+                                    <option value="Yes" @if( request('experience') == 'Yes' ): selected @endif>Yes</option>
+                                    <option value="No" @if( request('experience') == 'No' ): selected @endif>No</option>
                                 </select>
                             </div>
                         </div>
@@ -47,6 +69,9 @@
                                 <button class="btn btn-secondary btn-block">
                                     <span class="fa fa-search"></span> Search
                                 </button>
+                            </div>
+                            <div class="col-md-2">
+                                <a href="/admin/" class="btn">Clear</a>
                             </div>
                         </div>
                     </form>

@@ -11,9 +11,10 @@ class SearchController extends Controller
 {
     public function filter(Request $request, Submission $submission) {
 
-        // $submissions = $submission->paginate(5);
-        // $total_count = $submission->get()->count();
+        // * get all states (BEFORE running filter query)
+        $states = $submission->select('state')->distinct()->orderBy('state', 'asc')->get();
 
+        // * queries
         if ($request->has('first_name')) {
             $submission = $submission->where('first_name', 'LIKE', "%{$request->first_name}%");
         }
@@ -26,8 +27,34 @@ class SearchController extends Controller
             $submission = $submission->where('city', 'LIKE', "%{$request->city}%");
         }
 
-        return $submission->get();
+        if ($request->has('state')) {
+            $submission = $submission->where('state', 'LIKE', "%{$request->state}%");
+        }
 
+        if ($request->has('cdla')) {
+            $submission = $submission->where('cdla', 'LIKE', "%{$request->cdla}%");
+        }
+
+        if ($request->has('experience')) {
+            $submission = $submission->where('experience', 'LIKE', "%{$request->experience}%");
+        }
+
+        // * get result(s) count (BEFORE setting up pagination)
+        $total_count = $submission->get()->count();
+
+        // * setup pagination
+        $submissions = $submission->paginate(5)->setPath('');
+
+        // * enable pagination even after search filters
+        $pagination = $submissions->appends ([
+            'first_name' => Input::get('first_name'),
+            'last_name' => Input::get('last_name'),
+            'city' => Input::get('city'),
+            'state' => Input::get('state') 
+        ]);
+
+        // * Route
+        return view('auth.home', compact('submissions', 'total_count', 'states'));
         
 
 

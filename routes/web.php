@@ -26,5 +26,5 @@ Route::get('/admin', 'HomeController@index')->name('home');
 Route::resource('/submissions', 'HomeController');
 Route::get('/export', 'HomeController@export');
 
-// * Search Form
-Route::post('/admin/search', 'SearchController@filter');
+// * Search Form (use [any] to allow pagination usage)
+Route::any('/admin/search', 'SearchController@filter');
