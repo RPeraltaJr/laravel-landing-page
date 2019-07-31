@@ -56,8 +56,7 @@ class HomeController extends Controller
         // return $submission;
         $submission->update(request(['status', 'notes']));
         // return request();
-        return redirect("/submissions/{$submission->id}/edit");
-
+        return back()->with('success', 'Updated!');
     }
 
     public function show(Submission $submission) {
