@@ -26,7 +26,7 @@ class HomeController extends Controller
     public function index(Submission $submission)
     {
         // $submissions = Submission::all();
-        $submissions = $submission->paginate(5);
+        $submissions = $submission->orderBy('created_at', 'desc')->paginate(5);
         $total_count = $submission->count();
         $states = $submission->select('state')->distinct()->orderBy('state', 'asc')->get();
         return view('auth.home', compact('submissions', 'total_count', 'states'));

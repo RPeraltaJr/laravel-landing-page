@@ -43,7 +43,7 @@ class SearchController extends Controller
         $total_count = $submission->get()->count();
 
         // * setup pagination
-        $submissions = $submission->paginate(5)->setPath('');
+        $submissions = $submission->orderBy('created_at', 'desc')->paginate(5)->setPath(''); // set pagination & limit
 
         // * enable pagination even after search filters
         $pagination = $submissions->appends ([
