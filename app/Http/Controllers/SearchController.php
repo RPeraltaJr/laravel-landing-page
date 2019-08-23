@@ -11,7 +11,7 @@ class SearchController extends Controller
 {
     public function filter(Request $request, Submission $submission) {
 
-        // * get all states (BEFORE running filter query)
+        // * get all states (BEFORE running filter query) to display in front-end
         $states = $submission->select('state')->distinct()->orderBy('state', 'asc')->get();
 
         // * queries
@@ -52,6 +52,13 @@ class SearchController extends Controller
             'city' => Input::get('city'),
             'state' => Input::get('state') 
         ]);
+
+        if( $request->first_name || $request->last_name || $request->city || $request->state || $request->cdla || $request->experience ) {
+            // * Set a session when searching
+            session(['filter' => true]); 
+        }
+
+        // return $request
 
         // * Route
         return view('auth.home', compact('submissions', 'total_count', 'states'));

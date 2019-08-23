@@ -23,10 +23,21 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    @auth
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="collapse" href="#filter" role="button" aria-expanded="false" aria-controls="collapseFilter">
+                                Filter
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="collapse" href="#export" role="button" aria-expanded="false" aria-controls="collapseExport">
+                                Export
+                            </a>
+                        </li>
                     </ul>
+                    @endauth
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">

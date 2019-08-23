@@ -22,7 +22,12 @@ Auth::routes(
     ['register' => false]
 );
 
-Route::get('/admin', 'HomeController@index')->name('home');
+Route::get('/admin', 'HomeController@index');
+Route::get('/logout', function() {
+    Auth::logout();
+    return redirect('/login');
+});
+
 Route::resource('/submissions', 'HomeController');
 Route::get('/export', 'HomeController@export');
 

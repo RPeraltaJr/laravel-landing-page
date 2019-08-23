@@ -29,6 +29,7 @@ class HomeController extends Controller
         $submissions = $submission->orderBy('created_at', 'desc')->paginate(5);
         $total_count = $submission->count();
         $states = $submission->select('state')->distinct()->orderBy('state', 'asc')->get();
+        session()->forget('filter'); // clear session when viewing all submissions
         return view('auth.home', compact('submissions', 'total_count', 'states'));
     }
 

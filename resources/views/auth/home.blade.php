@@ -6,13 +6,13 @@
     <div class="row justify-content-center">
 
         <div class="col-md-6">
-            <div class="card">
+            <div class="card collapse @if(session('filter')) show @endif" id="filter">
                 <div class="card-body">
                     <form action="/admin/search" method="POST" autocomplete="off" role="search">
                         @csrf
                         <div class="form-row">
                             <div class="col-md-12">
-                                <h4>Search Filters</h4>
+                                <h4>Filter</h4>
                             </div>
                         </div>
                         <div class="form-row">
@@ -75,6 +75,17 @@
                             </div>
                         </div>
                     </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-5">
+            <div class="card collapse" id="export">
+                <div class="card-body">
+                    <a href="/export" class="btn btn-secondary">
+                        <span class="fa fa-download"></span>&nbsp; 
+                        Export CSV
+                    </a>
                 </div>
             </div>
         </div>
@@ -194,13 +205,6 @@
                 <hr>
             @endif
             
-        </div>
-
-        <div class="col-md-11">
-            <a href="/export" class="btn btn-secondary">
-                <span class="fa fa-download"></span>&nbsp; 
-                Export CSV
-            </a>
         </div>
 
     </div>
