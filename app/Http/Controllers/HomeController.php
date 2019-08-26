@@ -15,7 +15,8 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // * Authentication is required to run any method in this Controller
+        $this->middleware('auth'); 
     }
 
     /**
@@ -73,9 +74,16 @@ class HomeController extends Controller
         
     }
 
-    public function export() {
+    public function export(Request $request, Submission $submission) {
 
-        $table = Submission::all();
+        if ($request->has('from') && $request->has('to')) {
+            $date_from = $request->from;
+            $date_to = $request->to;
+            $submission = $submission->whereBetween("created_at", ["{$date_from} 00:00:00", "{$date_to} 23:59:59"]);
+        }
+
+        $table = $submission->get();
+
         $filename = "submissions.csv";
         $handle = fopen($filename, 'w+');
         fputcsv($handle, array(

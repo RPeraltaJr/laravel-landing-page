@@ -58,29 +58,8 @@ class SearchController extends Controller
             session(['filter' => true]); 
         }
 
-        // return $request
-
         // * Route
         return view('auth.home', compact('submissions', 'total_count', 'states'));
-        
-
-
-        // return view('auth.home', compact('submissions', 'total_count'));
-
-        // $first_name = request('first_name');
-        // $last_name = request('last_name');
-
-        // $submissions = Submission::where('first_name', '=', $first_name)->where('last_name', '=', $last_name)->paginate(5);
-
-        // if(count($submissions) > 0):
-        //     // return $submission; // for debugging
-        //     $total_count = Submission::where('first_name', '=', $first_name)->where('last_name', '=', $last_name)->get()->count();
-        //     return view('auth.home', compact('submissions', 'total_count'))->withQuery("$first_name $last_name");
-        // else:
-        //     $submissions = Submission::paginate(5);
-        //     $total_count = Submission::count();
-        //     return view('auth.home', compact('submissions', 'total_count'))->with("error", "No results found for <strong>{$first_name} {$last_name}</strong>. Try to search again!")->withQuery("$first_name $last_name");
-        // endif;
 
     }
 }

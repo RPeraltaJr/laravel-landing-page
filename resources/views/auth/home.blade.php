@@ -8,8 +8,8 @@
         <div class="col-md-6">
             <div class="card collapse @if(session('filter')) show @endif" id="filter">
                 <div class="card-body">
-                    <form action="/admin/search" method="POST" autocomplete="off" role="search">
-                        @csrf
+                    <form action="/admin/search" method="GET" autocomplete="off" role="search">
+                        
                         <div class="form-row">
                             <div class="col-md-12">
                                 <h4>Filter</h4>
@@ -82,10 +82,33 @@
         <div class="col-md-5">
             <div class="card collapse" id="export">
                 <div class="card-body">
-                    <a href="/export" class="btn btn-secondary">
-                        <span class="fa fa-download"></span>&nbsp; 
-                        Export CSV
-                    </a>
+                    <form action="/export" method="GET" autocomplete="off" role="search">
+                        <div class="form-row">
+                            <div class="col-md-12">
+                                <h4>Export</h4>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label for="export_from">From</label>
+                                <input type="text" name="from" id="export_from" class="form-control" placeholder="MM/DD/YYYY" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="export_to">To</label>
+                                <input type="text" name="to" id="export_to" class="form-control" placeholder="MM/DD/YYYY" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-3 mt-3">
+                                <button class="btn btn-secondary">
+                                    <span class="fa fa-download"></span> &nbsp;Export CSV
+                                </button>
+                            </div>
+                            <div class="col-md-3 mt-3">
+                                <a href="/export" class="btn">Export All</a>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
