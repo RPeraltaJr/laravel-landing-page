@@ -65,13 +65,17 @@
                             </div>
                         </div>
                         <div class="form-row mt-3">
-                            <div class="col-md-2">
-                                <button class="btn btn-secondary btn-block">
-                                    <span class="fa fa-search"></span> Search
-                                </button>
-                            </div>
-                            <div class="col-md-2">
-                                <a href="/admin/" class="btn">Clear</a>
+                            <div class="col-md-12">
+                                <ul class="list-inline">
+                                    <li class="list-inline-item">
+                                        <button class="btn btn-secondary btn-block">
+                                            <span class="fa fa-search"></span> Search
+                                        </button>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="/admin/" class="btn">Clear</a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </form>
@@ -98,14 +102,18 @@
                                 <input type="text" name="to" id="export_to" class="form-control" placeholder="MM/DD/YYYY" required>
                             </div>
                         </div>
-                        <div class="form-row">
-                            <div class="col-md-3 mt-3">
-                                <button class="btn btn-secondary">
-                                    <span class="fa fa-download"></span> &nbsp;Export CSV
-                                </button>
-                            </div>
-                            <div class="col-md-3 mt-3">
-                                <a href="/export" class="btn">Export All</a>
+                        <div class="form-row mt-3">
+                            <div class="col-md-12">
+                                <ul class="list-inline">
+                                    <li class="list-inline-item"">
+                                        <button class="btn btn-secondary">
+                                            <span class="fa fa-download"></span> &nbsp;Export CSV
+                                        </button>
+                                    </li>
+                                    <li class="list-inline-item"">
+                                        <a href="/export" class="btn">Export All</a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </form>
@@ -138,7 +146,7 @@
                 <table class="table table-bordered table-hover">
                     <thead class="thead-dark">
                         <tr>
-                            <th></th>
+                            <th>ID</th>
                             <th>First</th>
                             <th>Last</th>
                             <th>City</th>
@@ -155,7 +163,7 @@
                     <tbody>
                     @foreach ($submissions as $submission)
                         <tr>
-                            <th class="text-center">
+                            {{-- <th class="text-center">
                                 @switch($submission->status)
                                     @case('closed')
                                         <span class="fa fa-close" title="Closed"></span>
@@ -169,7 +177,8 @@
                                     @default
                                         <span class="fa fa-minus" title="Pending"></span>
                                 @endswitch
-                            </th>
+                            </th> --}}
+                            <th>{{ $submission->id }}</th>
                             <th>{{ $submission->first_name }}</th>
                             <th>{{ $submission->last_name }}</th>
                             <th>{{ $submission->city }}</th>
