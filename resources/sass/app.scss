@@ -12,3 +12,15 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
  
+table {
+    a {
+        color: white;
+        &:hover,
+        &:focus,
+        &:active,
+        &:target {
+            color: white;
+            text-decoration: underline;
+        }
+    }
+}

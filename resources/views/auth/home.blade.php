@@ -146,38 +146,67 @@
                 <table class="table table-bordered table-hover">
                     <thead class="thead-dark">
                         <tr>
-                            <th>ID</th>
-                            <th>First</th>
-                            <th>Last</th>
-                            <th>City</th>
-                            <th>State</th>
-                            <th>Zipcode</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th>CDL-A</th>
-                            <th>Experience</th>
-                            <th>Submitted</th>
+                            <th>
+                                <a href="{{ sort_order('id', request('order')) }}">
+                                    ID {!! sort_arrow('id', request('sort'), request('order')) !!}
+                                </a>
+                            </th>
+                            <th>
+                                <a href="{{ sort_order('first_name', request('order')) }}">
+                                    First {!! sort_arrow('first_name', request('sort'), request('order')) !!}
+                                </a>
+                            </th>
+                            <th>
+                                <a href="{{ sort_order('last_name', request('order')) }}">
+                                    Last {!! sort_arrow('last_name', request('sort'), request('order')) !!}
+                                </a>
+                            </th>
+                            <th>
+                                <a href="{{ sort_order('city', request('order')) }}">
+                                    City {!! sort_arrow('city', request('sort'), request('order')) !!}
+                                </a>
+                            </th>
+                            <th>
+                                <a href="{{ sort_order('state', request('order')) }}">
+                                    State {!! sort_arrow('state', request('sort'), request('order')) !!}
+                                </a>
+                            </th>
+                            <th>
+                                <a href="{{ sort_order('zipcode', request('order')) }}">
+                                    Zip {!! sort_arrow('zipcode', request('sort'), request('order')) !!}
+                                </a>
+                            </th>
+                            <th>
+                                <a href="{{ sort_order('email', request('order')) }}">
+                                    Email {!! sort_arrow('email', request('sort'), request('order')) !!}
+                                </a>
+                            </th>
+                            <th>
+                                <a href="{{ sort_order('phone', request('order')) }}">
+                                    Phone {!! sort_arrow('phone', request('sort'), request('order')) !!}
+                                </a>
+                            </th>
+                            <th>
+                                <a href="{{ sort_order('cdla', request('order')) }}">
+                                    CDL-A {!! sort_arrow('cdla', request('sort'), request('order')) !!}
+                                </a>
+                            </th>
+                            <th>
+                                <a href="{{ sort_order('experience', request('order')) }}">
+                                    Experience {!! sort_arrow('experience', request('sort'), request('order')) !!}
+                                </a>
+                            </th>
+                            <th>
+                                <a href="{{ sort_order('created_at', request('order')) }}">
+                                    Timestamp {!! sort_arrow('created_at', request('sort'), request('order')) !!}
+                                </a>
+                            </th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                     @foreach ($submissions as $submission)
                         <tr>
-                            {{-- <th class="text-center">
-                                @switch($submission->status)
-                                    @case('closed')
-                                        <span class="fa fa-close" title="Closed"></span>
-                                        @break
-                                    @case('hired')
-                                        <span class="fa fa-check" title="Hired"></span>
-                                        @break
-                                    @case('interview')
-                                        <span class="fa fa-calendar" title="Interview"></span>
-                                        @break
-                                    @default
-                                        <span class="fa fa-minus" title="Pending"></span>
-                                @endswitch
-                            </th> --}}
                             <th>{{ $submission->id }}</th>
                             <th>{{ $submission->first_name }}</th>
                             <th>{{ $submission->last_name }}</th>

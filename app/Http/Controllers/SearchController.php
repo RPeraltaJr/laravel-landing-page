@@ -43,14 +43,25 @@ class SearchController extends Controller
         $total_count = $submission->get()->count();
 
         // * setup pagination
-        $submissions = $submission->orderBy('created_at', 'desc')->paginate(5)->setPath(''); // set pagination & limit
+        $sort = "created_at";
+        $order = "desc";
+
+        if( $request->has('sort') && $request->has('order') ) {
+            $sort = $request->sort;
+            $order = $request->order;
+            $submission = $submission->orderBy($sort, $order);
+        }
+
+        $submissions = $submission->paginate(5)->setPath(''); // set pagination & limit
 
         // * enable pagination even after search filters
         $pagination = $submissions->appends ([
             'first_name' => Input::get('first_name'),
             'last_name' => Input::get('last_name'),
             'city' => Input::get('city'),
-            'state' => Input::get('state') 
+            'state' => Input::get('state'),
+            'sort' => Input::get('sort'),
+            'order' => Input::get('order'),
         ]);
 
         if( $request->first_name || $request->last_name || $request->city || $request->state || $request->cdla || $request->experience ) {

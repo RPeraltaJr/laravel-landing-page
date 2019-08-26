@@ -10655,3 +10655,15 @@ a.text-dark:focus {
   }
 }
 
+table a {
+  color: white;
+}
+
+table a:hover,
+table a:focus,
+table a:active,
+table a:target {
+  color: white;
+  text-decoration: underline;
+}
+
