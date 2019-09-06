@@ -19,7 +19,7 @@ Route::get('/thank-you', function () {
 
 // * Dashboard Routes
 Auth::routes(
-    ['register' => false]
+    // ['register' => false]
 );
 
 Route::get('/admin', 'HomeController@index');

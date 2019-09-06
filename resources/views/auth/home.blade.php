@@ -244,7 +244,7 @@
                                             
                                             <!-- Modal footer -->
                                             <div class="modal-footer">
-                                                <form action="/delete/{{ $submission->id }}" method="POST">
+                                                <form action="/submissions/{{ $submission->id }}" method="POST">
                                                     @method('DELETE')
                                                     @csrf
                                                     <button class="btn btn-danger">Delete</button>
