@@ -13,8 +13,8 @@ class SubmissionsTest extends TestCase
     // use RefreshDatabase;
 
     /** @test */
-    public function guests_can_apply() {
-
+    public function guests_can_apply() 
+    {
         // $this->withoutExceptionHandling();
 
         function localize_us_number($phone) {
@@ -38,7 +38,21 @@ class SubmissionsTest extends TestCase
 
         $this->post("/", $attributes);
         $this->assertDatabaseHas("submissions", $attributes);
+    }
 
+    /** @test */
+    public function only_authenticated_users_can_access_admin_dashboard()
+    {
+        // $this->withoutExceptionHandling();
+        $this->signIn();
+        $this->get('/admin')->assertStatus(200);
+    }
+
+    /** @test */
+    public function guests_cannot_access_admin_dashboard() 
+    {
+        // $this->withoutExceptionHandling();
+        $this->get('/admin')->assertRedirect('login');
     }
     
 }
