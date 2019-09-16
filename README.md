@@ -4,11 +4,7 @@
 
 This project uses the latest version of Laravel to run (Laravel Framework 5.8.28). 
 
-To get started, make a clone of this project to your local machine:
-
-```
-git clone https://github.com/RPeraltaJr/laravel-landing-page.git
-```
+To get started, make a clone of this project to your local machine.
 
 Install all composer packages:
 
