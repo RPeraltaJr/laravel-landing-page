@@ -12,6 +12,12 @@ Install all composer packages:
 composer install
 ```
 
+Install all npm packages:
+
+```
+npm install
+```
+
 Create a **.env** file and update **DB_DATABASE**, **DB_USERNAME**, and **DB_PASSWORD**. Then run migrations:
 
 ```
