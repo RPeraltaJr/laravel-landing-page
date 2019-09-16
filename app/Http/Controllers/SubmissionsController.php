@@ -66,7 +66,7 @@ class SubmissionsController extends Controller
         return view('index', compact('states'));
     }
 
-    public function store() {
+    public function store(Submission $submission) {
 
         function cleanInput($data) {
             $data = ucwords(strtolower($data));
@@ -100,7 +100,7 @@ class SubmissionsController extends Controller
         $attributes['experience'] = cleanInput($attributes['experience']);
 
         // update or create (to prevent duplicate entries)
-        Submission::updateOrCreate($attributes);
+        $submission->updateOrCreate($attributes);
         return redirect('/thank-you');
         
     }

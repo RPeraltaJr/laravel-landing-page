@@ -34,45 +34,56 @@ class SubmissionsTest extends TestCase
     public function guests_cannot_access_admin_dashboard() 
     {
         // $this->withoutExceptionHandling();
-        $this->get('/admin')->assertRedirect('login');
+        $this->get('/admin')
+            ->assertStatus(302)
+            ->assertRedirect('login');
     }
 
     /** @test */
     public function guests_cannot_view_a_submission()
     {   
         $submission = factory('App\Submission')->create();
-        $this->get($submission->path())->assertRedirect('login');
+        $this->get($submission->path())
+            ->assertStatus(302)
+            ->assertRedirect('login');
     }
 
     /** @test */
     public function guests_cannot_edit_a_submission()
     {   
         $submission = factory('App\Submission')->create();
-        $this->get($submission->path() . '/edit')->assertRedirect('login');
+        $this->get($submission->path() . '/edit')
+            ->assertStatus(302)
+            ->assertRedirect('login');
     }
 
     /** @test */
     public function guests_cannot_delete_a_submission()
     {   
         $submission = factory('App\Submission')->create();
-        $this->delete($submission->path())->assertRedirect('login');
+        $this->delete($submission->path())
+            ->assertStatus(302)
+            ->assertRedirect('login');
     }
 
     /** @test */
     public function authenticated_users_can_export_json_file() 
     {   
-        // $this->withoutExceptionHandling();
+        $this->withoutExceptionHandling();
         $this->signIn();
         $this->get('/export')
             ->assertStatus(200)
-            ->assertSuccessful();
+            ->assertSuccessful()
+            ->assertSessionHasNoErrors();    
     }
 
      /** @test */
      public function guests_cannot_export_json_file() 
      {   
          // $this->withoutExceptionHandling();
-         $this->get('/export')->assertRedirect('login');
+         $this->get('/export')
+            ->assertStatus(302)
+            ->assertRedirect('login');
      }
     
 }

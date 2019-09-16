@@ -27,7 +27,7 @@ class HomeController extends Controller
     public function index(Submission $submission)
     {
         // $submissions = Submission::all();
-        $submissions = $submission->orderBy('created_at', 'desc')->paginate(5);
+        $submissions = $submission->orderBy('created_at', 'desc')->paginate(10);
         $total_count = $submission->count();
         $states = $submission->select('state')->distinct()->orderBy('state', 'asc')->get();
         session()->forget('filter'); // clear session when viewing all submissions
