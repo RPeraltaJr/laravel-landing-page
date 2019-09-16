@@ -12,5 +12,5 @@ npm-debug.log
 yarn-error.log
 package-lock.json
 /public/*.csv
+public/submissions.csv
 *.csv
-submissions.csv
