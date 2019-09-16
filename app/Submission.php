@@ -21,4 +21,8 @@ class Submission extends Model
         'status',
         'notes',
     ];
+
+    public function path() {
+        return "/submissions/{$this->id}";
+    }
 }

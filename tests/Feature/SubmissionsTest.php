@@ -16,28 +16,10 @@ class SubmissionsTest extends TestCase
     public function guests_can_apply() 
     {
         // $this->withoutExceptionHandling();
+        $submission = factory('App\Submission')->raw();
 
-        function localize_us_number($phone) {
-            $numbers_only = preg_replace("/[^\d]/", "", $phone);
-            return preg_replace("/^1?(\d{3})(\d{3})(\d{4})$/", "$1-$2-$3", $numbers_only);
-        }
-        $answers = ["Yes", "No"];
-
-        $attributes = [
-            'first_name'    => $this->faker->firstName,
-            'last_name'     => $this->faker->lastName,
-            'city'          => $this->faker->city,
-            'state'         => $this->faker->stateAbbr,
-            'zipcode'       => substr($this->faker->postcode, 0, 5),
-            'email'         => $this->faker->email,
-            'phone'         => localize_us_number(rand('1111111111', '9999999999')),
-            'cdla'          => $answers[rand(0,1)],
-            'experience'    => $answers[rand(0,1)],
-            'confirm'       => 1,
-        ];
-
-        $this->post("/", $attributes);
-        $this->assertDatabaseHas("submissions", $attributes);
+        $this->post("/", $submission); 
+        $this->assertDatabaseHas("submissions", $submission);
     }
 
     /** @test */
@@ -54,5 +36,43 @@ class SubmissionsTest extends TestCase
         // $this->withoutExceptionHandling();
         $this->get('/admin')->assertRedirect('login');
     }
+
+    /** @test */
+    public function guests_cannot_view_a_submission()
+    {   
+        $submission = factory('App\Submission')->create();
+        $this->get($submission->path())->assertRedirect('login');
+    }
+
+    /** @test */
+    public function guests_cannot_edit_a_submission()
+    {   
+        $submission = factory('App\Submission')->create();
+        $this->get($submission->path() . '/edit')->assertRedirect('login');
+    }
+
+    /** @test */
+    public function guests_cannot_delete_a_submission()
+    {   
+        $submission = factory('App\Submission')->create();
+        $this->delete($submission->path())->assertRedirect('login');
+    }
+
+    /** @test */
+    public function authenticated_users_can_export_json_file() 
+    {   
+        // $this->withoutExceptionHandling();
+        $this->signIn();
+        $this->get('/export')
+            ->assertStatus(200)
+            ->assertSuccessful();
+    }
+
+     /** @test */
+     public function guests_cannot_export_json_file() 
+     {   
+         // $this->withoutExceptionHandling();
+         $this->get('/export')->assertRedirect('login');
+     }
     
 }
