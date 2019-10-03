@@ -2,7 +2,7 @@
 
 ### Installation
 
-This project uses the latest version of Laravel to run (Laravel Framework 5.8.28). 
+This project uses version 5.8.28 of Laravel to run. 
 
 To get started, make a clone of this project to your local machine.
 
