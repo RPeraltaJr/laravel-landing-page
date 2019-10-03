@@ -82,7 +82,7 @@ class HomeController extends Controller
                 $date_to = $request->to;
                 $submission = $submission->whereBetween("created_at", ["{$date_from} 00:00:00", "{$date_to} 23:59:59"]);
             else:
-                return back()->with('error', 'Error! The selected <strong>From</strong> date is after the <strong>To</strong> date.');
+                return back()->with('error', 'Error! <strong>From</strong> date must be before <strong>To</strong> date');
             endif;
         endif;
 
