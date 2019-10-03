@@ -35,3 +35,26 @@ Finally, run the project locally:
 ```
 php artisan serve
 ```
+
+### Register an Admin account
+
+Navigate to **localhost:8000/admin**
+
+
+### Unit Testing
+
+Create an alias
+
+```
+alias pf="vendor/bin/phpunit --filter"
+```
+
+Run a specific method or class (see example below).
+
+```
+pf SubmissionsTest
+```
+or
+```
+pf guests_can_apply
+```
