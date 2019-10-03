@@ -18,7 +18,7 @@ Install all npm packages:
 npm install
 ```
 
-Create a **.env** file and update **DB_DATABASE**, **DB_USERNAME**, and **DB_PASSWORD**. Then run migrations:
+Create a **.env** file (make a copy of **.env.example**) and update **DB_DATABASE**, **DB_USERNAME**, and **DB_PASSWORD**. Then run migrations:
 
 ```
 php artisan migrate
