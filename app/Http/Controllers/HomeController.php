@@ -76,11 +76,15 @@ class HomeController extends Controller
 
     public function export(Request $request, Submission $submission) {
 
-        if ($request->has('from') && $request->has('to')) {
-            $date_from = $request->from;
-            $date_to = $request->to;
-            $submission = $submission->whereBetween("created_at", ["{$date_from} 00:00:00", "{$date_to} 23:59:59"]);
-        }
+        if( $request->has('from') && $request->has('to') ):
+            if( $request->has('from') < $request->has('to') ):
+                $date_from = $request->from;
+                $date_to = $request->to;
+                $submission = $submission->whereBetween("created_at", ["{$date_from} 00:00:00", "{$date_to} 23:59:59"]);
+            else:
+                return back()->with('error', 'Error! The selected <strong>From</strong> date is after the <strong>To</strong> date.');
+            endif;
+        endif;
 
         $table = $submission->get();
 

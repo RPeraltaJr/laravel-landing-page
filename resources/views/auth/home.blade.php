@@ -5,6 +5,11 @@
 <div class="container-fluid">
     <div class="row justify-content-center">
 
+        <div class="col-md-11">
+            @include('shared.error')
+            @include('shared.success')
+        </div>
+
         <div class="col-md-6">
             <div class="card collapse @if(session('filter')) show @endif" id="filter">
                 <div class="card-body">
@@ -84,7 +89,7 @@
         </div>
 
         <div class="col-md-5">
-            <div class="card collapse" id="export">
+            <div class="card collapse @if(session('export')) show @endif"" id="export">
                 <div class="card-body">
                     <form action="/export" method="GET" autocomplete="off" role="search">
                         <div class="form-row">
@@ -122,8 +127,6 @@
         </div>
 
         <div class="col-md-11 mt-4">
-
-            @include('shared.error')
 
             @if ($submissions)
                 <h3>

@@ -10,6 +10,7 @@
         <div class="row">
 
             <div class="col-md-12">
+                @include('shared.error')
                 @include('shared.success')
                 <a href="/admin" class="btn btn-secondary">View All</a>
                 <hr>
